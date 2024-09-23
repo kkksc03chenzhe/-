@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新标签页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .search-box {
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .links {
+            margin-top: 20px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 18px;
+        }
+        .link-active {
+            transition: transform 0.2s;
+            transform: scale(1.1);
+        }
+    </style>
+    <script>
+        const password = "kkksc03chenzhe";
+
+        function search() {
+            const query = document.getElementById('search-input').value;
+            const links = document.querySelectorAll('.links a');
+            let found = false;
+
+            links.forEach(link => {
+                if (link.textContent.toLowerCase().includes(query.toLowerCase())) {
+                    link.style.display = 'inline-block';
+                    found = true;
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+
+            if (!found) {
+                alert('没有找到相关链接');
+            }
+        }
+
+        function handleLinkClick(event) {
+            event.preventDefault();
+            const userPassword = prompt("请输入密码：");
+            if (userPassword === password) {
+                const link = event.target.getAttribute('href');
+                window.open(link, '_blank');
+                event.target.classList.add('link-active');
+            } else {
+                alert('密码错误！');
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll('.links a');
+            links.forEach(link => {
+                link.addEventListener('click', handleLinkClick);
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <h1>欢迎来到游戏中转站</h1>
+    <h2>点击每个网页要输入密码！！！</h2>
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="搜索..." onkeyup="search()">
+    </div>
+    
+    <div class="links">
+        <a href="https://florr.io" target="_blank">florr</a>
+        <a href="https://2048game.com" target="_blank">2048</a>
+        <a href="https://ak-ioi.com" target="_blank">ak-ioi</a>
+        <a href="https://digdig.io" target="_blank">挖掘者</a>
+        <a href="https://byruthub.org/" target="_blank">有大量天价游戏免费.torrent的地方</a>
+        <a href="https://www.gamesdatabase.org/" target="_blank">游戏数据库有BUG别点</a>
+        <a href="https://www.reddit.com/r/gamedev/" target="_blank">Reddit上的游戏开发讨论区</a>
+        <a href="https://steamstore-a.akamaihd.net/0?l=schinese" target="_blank">steam....</a>
+        <a href="https://fpsgo.net/cs" target="_blank">CS1.6</a>
+        <a href="https://mod.3dmgame.com/mod/194985" target="_blank">下载MC</a>
+        <a href="https://www.luogu.com/paste/1agz1vs7" target="_blank">洛谷小游戏合集</a>
+        <a href="https://douyin.com" target="_blank">抖音</a>
+        <a href="https://bilibili.com" target="_blank">B站</a>
+        
+    </div>
+
+</body>
+</html>
